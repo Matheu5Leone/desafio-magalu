@@ -1,0 +1,81 @@
+package leone.desafio_magalu.model;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+public class Notification {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long notificationId;
+    private LocalDateTime dateTime;
+    private String destination;
+    private String message;
+    @ManyToOne
+    @JoinColumn(name = "channel_id")
+    private Channel channel;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private StatusNotification status;
+
+    public Notification() {
+
+    }
+
+    public Notification(LocalDateTime dateTime, String destination, String message, Channel channel, StatusNotification status) {
+        this.dateTime = dateTime;
+        this.destination = destination;
+        this.message = message;
+        this.channel = channel;
+        this.status = status;
+    }
+
+    public Long getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(Long notificationId) {
+        this.notificationId = notificationId;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
+
+    public StatusNotification getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusNotification status) {
+        this.status = status;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+}
